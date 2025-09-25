@@ -1,0 +1,14 @@
+#include <stdio.h>
+void main(){
+    int light_intensity;
+    printf("enter light intensity (between 0-130000): " );
+    scanf("%d",&light_intensity);
+    printf("you have entered %d light_intensity\n",light_intensity);
+    if(light_intensity<20000)
+    { 
+        printf("dimmer OFF");
+    }
+    else{ 
+        printf("dimmer ON");
+    }
+}
