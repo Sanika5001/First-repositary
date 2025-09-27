@@ -1,0 +1,43 @@
+#include<stdio.h>
+void main()
+{ float
+     Profit1, Profit2, Profit3, Profit4, Profit5, average_profit, Years_purchase, goodwill,sum;
+     printf("Enter first profit:");
+     scanf("%f",&Profit1);
+     printf("Enter second profit:");
+      scanf("%f",&Profit2);
+     printf("Enter third profit:");
+     scanf("%f",&Profit3);
+     printf("Enter fourth profit:");
+     scanf("%f",&Profit4);
+     printf("Enter fifth profit:");
+     scanf("%f",&Profit5);
+    sum=Profit1+Profit2+Profit3+Profit4+Profit5;
+    average_profit=sum/5;
+    printf("The average profit of the company is %f\n",average_profit);
+    printf("enter number of years' purchases:");
+    scanf("%f",&Years_purchase);
+    goodwill=average_profit*Years_purchase;
+    printf("Goodwill of this company is %f\n\n",goodwill);
+    if(goodwill>120000000000)
+        { 
+            printf("This is a five star company");
+        }
+        else if("goodwill>90000000000")
+        { 
+            printf("This is a four star company");
+            
+        }
+        else if("goodwill>60000000000")
+         { 
+             printf("This is a three star company");
+             
+         }
+        else if("goodwill>30000000000")
+        {
+            printf("This is a two star company");
+            
+        }
+        else{
+            printf("This is a one star comapany");
+        }
