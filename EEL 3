@@ -1,0 +1,149 @@
+#include <stdio.h>
+
+int main() {
+    char company_name[100], company_address[100], company_phone[100], company_email[100];
+    char customer_name[100], customer_address[100], customer_phone[100];
+    char bill_number[100], issue_date[100], due_date[100];
+    char item1[100], item2[100], item3[100], item4[100], item5[100];
+    char gold1[100], gold2[100], gold3[100], gold4[100], gold5[100];
+    char purity1[100], purity2[100], purity3[100], purity4[100], purity5[100];
+    char stone1[100], stone2[100], stone3[100], stone4[100], stone5[100];
+    char makingcharges1[100], makingcharges2[100], makingcharges3[100], makingcharges4[100], makingcharges5[100];
+    char termsandconditions[100];
+    int total1, total2, total3, total4, total5, grandtotal;
+
+    // Company Details
+    printf("Enter company name: ");
+    scanf("%s", company_name);
+    printf("Enter company address: ");
+    scanf("%s", company_address);
+    printf("Enter company phone number: ");
+    scanf("%s", company_phone);
+    printf("Enter company email: ");
+    scanf("%s", company_email);
+
+    // Customer Details
+    printf("Enter customer name: ");
+    scanf("%s", customer_name);
+    printf("Enter customer address: ");
+    scanf("%s", customer_address);
+    printf("Enter customer phone: ");
+    scanf("%s", customer_phone);
+
+    // Bill Info
+    printf("Enter bill number: ");
+    scanf("%s", bill_number);
+    printf("Enter issue date: ");
+    scanf("%s", issue_date);
+    printf("Enter due date: ");
+    scanf("%s", due_date);
+
+    // Item 1
+    printf("Enter item1: ");
+    scanf("%s", item1);
+    printf("Enter weight of gold in grams: ");
+    scanf("%s", gold1);
+    printf("Enter purity of gold: ");
+    scanf("%s", purity1);
+    printf("Enter number of diamonds: ");
+    scanf("%s", stone1);
+    printf("Enter making charges: ");
+    scanf("%s", makingcharges1);
+    printf("Enter amount: ");
+    scanf("%d", &total1);
+
+    // Item 2
+    printf("Enter item2: ");
+    scanf("%s", item2);
+    printf("Enter weight of gold in grams: ");
+    scanf("%s", gold2);
+    printf("Enter purity of gold: ");
+    scanf("%s", purity2);
+    printf("Enter number of diamonds: ");
+    scanf("%s", stone2);
+    printf("Enter making charges: ");
+    scanf("%s", makingcharges2);
+    printf("Enter amount: ");
+    scanf("%d", &total2);
+
+    // Item 3
+    printf("Enter item3: ");
+    scanf("%s", item3);
+    printf("Enter weight of gold in grams: ");
+    scanf("%s", gold3);
+    printf("Enter purity of gold: ");
+    scanf("%s", purity3);
+    printf("Enter number of diamonds: ");
+    scanf("%s", stone3);
+    printf("Enter making charges: ");
+    scanf("%s", makingcharges3);
+    printf("Enter amount: ");
+    scanf("%d", &total3);
+
+    // Item 4
+    printf("Enter item4: ");
+    scanf("%s", item4);
+    printf("Enter weight of gold in grams: ");
+    scanf("%s", gold4);
+    printf("Enter purity of gold: ");
+    scanf("%s", purity4);
+    printf("Enter number of diamonds: ");
+    scanf("%s", stone4);
+    printf("Enter making charges: ");
+    scanf("%s", makingcharges4);
+    printf("Enter amount: ");
+    scanf("%d", &total4);
+
+    // Item 5
+    printf("Enter item5: ");
+    scanf("%s", item5);
+    printf("Enter weight of gold in grams: ");
+    scanf("%s", gold5);
+    printf("Enter purity of gold: ");
+    scanf("%s", purity5);
+    printf("Enter number of diamonds: ");
+    scanf("%s", stone5);
+    printf("Enter making charges: ");
+    scanf("%s", makingcharges5);
+    printf("Enter amount: ");
+    scanf("%d", &total5);
+
+    // Grand total
+    grandtotal = total1 + total2 + total3 + total4 + total5;
+
+    // Terms
+    printf("Enter terms and conditions: ");
+    scanf("%s", termsandconditions);
+
+    // Output Section
+    printf("\n---------------------------------------------\n");
+    printf("                BILL RECEIPT\n");
+    printf("---------------------------------------------\n");
+    printf("Company Name      : %s\n", company_name);
+    printf("Address           : %s\n", company_address);
+    printf("Phone             : %s\n", company_phone);
+    printf("Email             : %s\n\n", company_email);
+
+    printf("Customer Name     : %s\n", customer_name);
+    printf("Address           : %s\n", customer_address);
+    printf("Phone             : %s\n\n", customer_phone);
+
+    printf("Bill Number       : %s\n", bill_number);
+    printf("Issue Date        : %s\n", issue_date);
+    printf("Due Date          : %s\n", due_date);
+
+    printf("\n---------------------------------------------\n");
+    printf("Item        Gold(g)  Purity  Diamonds  Making  Amount\n");
+    printf("---------------------------------------------\n");
+    printf("%-10s %-8s %-7s %-9s %-7s %d\n", item1, gold1, purity1, stone1, makingcharges1, total1);
+    printf("%-10s %-8s %-7s %-9s %-7s %d\n", item2, gold2, purity2, stone2, makingcharges2, total2);
+    printf("%-10s %-8s %-7s %-9s %-7s %d\n", item3, gold3, purity3, stone3, makingcharges3, total3);
+    printf("%-10s %-8s %-7s %-9s %-7s %d\n", item4, gold4, purity4, stone4, makingcharges4, total4);
+    printf("%-10s %-8s %-7s %-9s %-7s %d\n", item5, gold5, purity5, stone5, makingcharges5, total5);
+    printf("---------------------------------------------\n");
+    printf("Grand Total: %d\n", grandtotal);
+    printf("---------------------------------------------\n");
+    printf("Terms & Conditions: %s\n", termsandconditions);
+
+    return 0;
+}
