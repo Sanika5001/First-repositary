@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+struct book{
+    char title[50];
+    char author[50];
+    int price;
+}
+;
+int main(){
+    struct book b[10];
+    int i, n, j,temp;
+    char tem1[50];
+    char tem2[50];
+    printf("Enter number of books: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        printf("\n Enter book title: ");
+        scanf("%s",b[i].title);
+        printf("\n Enter book author: ");
+        scanf("%s",b[i].author);
+        printf("\n Enter book price: ");
+        scanf("%d",&b[i].price);
+    }
+    for(int i=0;i<n;i++){
+        printf("\n book title:%s",b[i].title);
+        printf("\n book author:%s",b[i].author);
+        printf("\n book price:%d",b[i].price);
+        
+    }
+   for(i = 0; i < n - 1; i++) {
+        for(j = i + 1; j < n; j++) {
+            if(b[i].price < b[j].price) {
+                temp = b[i].price;
+                strcpy(tem1,b[i].title);
+                strcpy(tem2,b[i].author);
+                b[i].price = b[j].price;
+                strcpy(b[i].title,b[j].title);
+                strcpy(b[i].author,b[j].author);
+                b[j].price = temp;
+                strcpy(b[j].title,tem1);
+                strcpy(b[j].author,tem2);
+            }
+        }
+    }
+printf("\nBooks sorted by highest price to lowest:\n");
+    for(i = 0; i < n; i++) {
+        printf("\nTitle : %s", b[i].title);
+        printf("\nAuthor: %s", b[i].author);
+        printf("\nPrice : %d\n", b[i].price);
+}
+}
