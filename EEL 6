@@ -1,0 +1,57 @@
+#include<stdio.h>
+int search(int array[20],int start,int end,int element){
+int mid; 
+mid = start+(end-start)/2;
+ if(start>end){
+             return -1;
+        }
+if(array[mid]==element){
+    return mid;
+}
+if(array[mid]>element){
+    end=mid-1;
+    return search(array,start,end,element);
+}
+    else
+        start=mid+1;
+        return search(array,start,end,element);
+};
+int main(){
+    int n;
+    int i;
+    int j;
+    int q;
+    int mid;
+    int temp;
+    int array[20];
+    printf("Enter number of elements in array\n");
+    scanf("%d",&n);
+    printf("Enter elements of the array\n");
+    for(i=0;i<n;i++){
+        scanf("%d",&array[i]);
+    }
+      for(i = 0; i < n - 1; i++) {
+        for(j = i + 1; j < n; j++) {
+            if(array[i] > array[j]) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+      }
+      printf("\nsorted array is\n");
+    for(i = 0; i < n; i++) {
+        printf("%d  ", array[i]);
+}
+printf("\n");
+    printf("Enter the element you wish to search\n");
+    scanf("%d",&q);
+    int index = search(array,0,n-1,q);
+    if(index==-1){
+        printf("element not found");
+    }
+    else
+    printf("%d is index of element",index);
+    return 0;
+}
+
