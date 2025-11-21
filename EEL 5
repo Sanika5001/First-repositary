@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<string.h>
+struct book{	
+    char title[50];
+    char author[50];
+    int price;
+};
+int main(){
+    struct book b[10];
+    int c, n=0, i, j, temp, result;
+    char tem1[50], tem2[50], search_title[50];
+    while(1){
+    printf( "Menu\n 1.Add\n 2.Sort\n 3.Search\n 4.Display\n 5.Exit\n");
+        printf("Enter choice: ");
+        scanf("%d",&c);
+        switch(c){
+        case 1:
+            printf("Enter number of books you wish  to add: ");
+            scanf("%d",&n);
+            for(i=0;i<n;i++){
+        printf("\n Enter book title: ");
+        scanf("%s",b[i].title);
+        printf("\n Enter book author: ");
+        scanf("%s",b[i].author);
+        printf("\n Enter book price: ");
+        scanf("%d",&b[i].price);
+    }
+    for(int i=0;i<n;i++){
+        printf("\n book title:%s",b[i].title);
+        printf("\n book author:%s",b[i].author);
+        printf("\n book price:%d",b[i].price);
+        printf("\n book added successfully\n\n");
+    }
+     break;
+        case 2:
+         if(n==0){
+             printf("add books first\n");
+             break;
+         }
+          for(i = 0; i < n - 1; i++) {
+        for(j = i + 1; j < n; j++) {
+            if(b[i].price < b[j].price) {
+                temp = b[i].price;
+                strcpy(tem1,b[i].title);
+                strcpy(tem2,b[i].author);
+                b[i].price = b[j].price;
+                strcpy(b[i].title,b[j].title);
+                strcpy(b[i].author,b[j].author);
+                b[j].price = temp;
+                strcpy(b[j].title,tem1);
+                strcpy(b[j].author,tem2);
+            }
+        }
+    }
+printf("\nBooks sorted by highest price to lowest:\n");
+    for(i = 0; i < n; i++) {
+        printf("\nTitle : %s", b[i].title);
+        printf("\nAuthor: %s", b[i].author);
+        printf("\nPrice : %d\n", b[i].price);
+}
+break;
+    case 3:
+     if(n==0){
+             printf("add books first\n");
+             break;
+         }
+     char search_title[100];
+    printf("Enter title to search: ");
+    scanf("%s", search_title);
+
+    int found = 0;  
+      for (i = 0; i < n; i++) {
+        if (strcmp(search_title, b[i].title) == 0) {
+            printf("\nTitle : %s", b[i].title);
+            printf("\nAuthor: %s", b[i].author);
+            printf("\nPrice : %d\n", b[i].price);
+            found = 1;  
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Book not found\n");
+    }
+
+    return 0;
+}
+
+    case 4:
+     if(n==0){
+             printf("add books first\n");
+             break;
+         }
+      for(i = 0; i < n; i++) {
+        printf("\nTitle : %s", b[i].title);
+        printf("\nAuthor: %s", b[i].author);
+        printf("\nPrice : %d\n", b[i].price);
+}
+    break;
+    case 5:
+    printf("Exiting the code\n");
+    return 0;
+    default:
+        printf("invalid input\n");
+} 
+    }
+}  
