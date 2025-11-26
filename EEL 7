@@ -1,0 +1,82 @@
+#include <stdio.h>
+int rows = 7;
+int cols = 5;
+int path_r[100], path_c[100];
+int word_length(char w[]) {
+    int i = 0;
+    while (w[i] != '\0')
+        i++;
+    return i;
+}
+char to_upper_manual(char ch) {
+    if (ch >= 'a' && ch <= 'z')
+        return ch - 32;
+    return ch;
+}
+int dfs(char board[10][10], int i, int j, char word[], int k, int len) {
+    if (board[i][j] != word[k])
+        return 0;
+    path_r[k] = i;
+    path_c[k] = j;
+    if (k == len - 1)
+        return 1;
+    char temp = board[i][j];
+    board[i][j] = '#';
+    int dir[4][2] = {{-1,0},{1,0},{0,-1},{0,1}};
+    int d;
+    for (d = 0; d < 4; d++) {
+        int x = i + dir[d][0];
+        int y = j + dir[d][1];
+        if (x >= 0 && x < rows && y >= 0 && y < cols && board[x][y] != '#') {
+            if (dfs(board, x, y, word, k + 1, len)) {
+                board[i][j] = temp;
+                return 1;
+            }
+        }
+    }
+    board[i][j] = temp;
+    return 0;
+}
+int exist(char board[10][10], char word[], int len) {
+    int i, j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            if (dfs(board, i, j, word, 0, len))
+                return 1;
+        }
+    }
+    return 0;
+}
+int main() {
+    char board[10][10] = {
+        {'C','O','D','E','X'},
+        {'A','R','T','I','R'},
+        {'S','T','N','R','A'},
+        {'T','H','I','B','N'},
+        {'L','O','G','I','C'},
+        {'R','N','L','S','L'},
+        {'A','H','A','S','T'}
+    };
+    printf("Grid:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++)
+            printf("%c  ", board[i][j]);
+        printf("\n");
+    }
+    char word[100];
+    printf("\nEnter word to search (lowercase allowed): ");
+    scanf("%s", word);
+    int len = word_length(word);
+    for (int i = 0; i < len; i++)
+        word[i] = to_upper_manual(word[i]);
+    if (exist(board, word, len)) {
+        printf("\nWORD FOUND!\n");
+        printf("Letter positions (row, column):\n");
+        for (int i = 0; i < len; i++)
+            printf("%c → (%d, %d)\n", word[i], path_r[i], path_c[i]);
+    }
+    else {
+        printf("\nWORD NOT FOUND.\n");
+    }
+    return 0;
+}
