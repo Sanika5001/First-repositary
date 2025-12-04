@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct book {
+    char title[50];
+    char author[50];
+    int price;
+};
+
+int loadBooks(struct book b[]) {
+    FILE *fp = fopen("books.txt", "r");
+    if (!fp) return 0;
+
+    int count = 0;
+    while (fscanf(fp, "%s %s %d", 
+                  b[count].title, 
+                  b[count].author, 
+                  &b[count].price) == 3) {
+        count++;
+    }
+    fclose(fp);
+    return count;
+}
+
+void saveBookToFile(struct book bk) {
+    FILE *fp = fopen("books.txt", "a");
+    if (!fp) {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    fprintf(fp, "%s %s %d\n", bk.title, bk.author, bk.price);
+    fclose(fp);
+}
+
+int main() {
+    struct book b[100];
+    int c, n = 0, i, j;
+    char tempTitle[50], tempAuthor[50], search_title[50];
+    int tempPrice;
+
+    n = loadBooks(b);
+
+    while (1) {
+        printf("\n--- MENU ---\n");
+        printf("1. Add\n2. Sort\n3. Search\n4. Display\n5. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &c);
+
+        switch (c) {
+        case 1: {
+            int addCount;
+            printf("Enter number of books you want to add: ");
+            scanf("%d", &addCount);
+
+            for (i = n; i < n + addCount; i++) {
+                printf("\nEnter book title: ");
+                scanf("%s", b[i].title);
+
+                printf("Enter book author: ");
+                scanf("%s", b[i].author);
+
+                printf("Enter book price: ");
+                scanf("%d", &b[i].price);
+
+                saveBookToFile(b[i]); // save each entry
+                printf("Book added & saved successfully!\n");
+            }
+            n += addCount;
+            break;
+        }
+
+        case 2:
+            if (n == 0) {
+                printf("Add books first!\n");
+                break;
+            }
+
+            for (i = 0; i < n - 1; i++) {
+                for (j = i + 1; j < n; j++) {
+                    if (b[i].price < b[j].price) {
+                        tempPrice = b[i].price;
+                        b[i].price = b[j].price;
+                        b[j].price = tempPrice;
+
+                        strcpy(tempTitle, b[i].title);
+                        strcpy(b[i].title, b[j].title);
+                        strcpy(b[j].title, tempTitle);
+
+                        strcpy(tempAuthor, b[i].author);
+                        strcpy(b[i].author, b[j].author);
+                        strcpy(b[j].author, tempAuthor);
+                    }
+                }
+            }
+
+            printf("\nBooks sorted by price (High → Low):\n");
+            for (i = 0; i < n; i++) {
+                printf("\nTitle : %s", b[i].title);
+                printf("\nAuthor: %s", b[i].author);
+                printf("\nPrice : %d\n", b[i].price);
+            }
+            break;
+
+        case 3:
+            if (n == 0) {
+                printf("Add books first!\n");
+                break;
+            }
+
+            printf("Enter title to search: ");
+            scanf("%s", search_title);
+
+            int found = 0;
+
+            for (i = 0; i < n; i++) {
+                if (strcmp(search_title, b[i].title) == 0) {
+                    printf("\nTitle : %s", b[i].title);
+                    printf("\nAuthor: %s", b[i].author);
+                    printf("\nPrice : %d\n", b[i].price);
+                    found = 1;
+                    break;
+                }
+            }
+
+            if (!found)
+                printf("Book NOT found!\n");
+
+            break;
+
+        case 4:
+            if (n == 0) {
+                printf("No books to display.\n");
+                break;
+            }
+
+            printf("\n--- BOOK LIST ---\n");
+            for (i = 0; i < n; i++) {
+                printf("\nTitle : %s", b[i].title);
+                printf("\nAuthor: %s", b[i].author);
+                printf("\nPrice : %d\n", b[i].price);
+            }
+            break;
+
+        case 5:
+            printf("Exiting program...\n");
+            return 0;
+
+        default:
+            printf("Invalid choice! Try again.\n");
+        }
+    }
+}
